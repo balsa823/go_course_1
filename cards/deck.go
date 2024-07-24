@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strings"
+)
 
 type deck []string
 
@@ -21,6 +25,19 @@ func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
+}
+
+func (d deck) toString() string {
+	cards := []string(d)
+	return strings.Join(cards, ",")
+}
+
+func (d deck) saveToFile(filename string) error {
+
+	data := []byte(d.toString())
+
+	return os.WriteFile(filename, data, 0666)
+
 }
 
 func deal(d deck, handSize int) (deck, deck) {
