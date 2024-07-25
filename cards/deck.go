@@ -12,8 +12,8 @@ type deck []string
 
 func newDeck() deck {
 	cards := deck{}
-	cardSuits := []string{"Spades", "Hearts", "Diamonds"}
-	cardValues := []string{"One", "Two", "Three", "Four", "Five", "Six"}
+	cardSuits := []string{"Spades"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
 	for _, suit := range cardSuits {
 		for _, value := range cardValues {
@@ -39,7 +39,6 @@ func (d deck) saveToFile(filename string) error {
 	data := []byte(d.toString())
 
 	return os.WriteFile(filename, data, 0666)
-
 }
 
 func readFromFile(filename string) deck {
